@@ -159,7 +159,7 @@ and (max-device-width : 736px){
     top: 15px;
     left: 40px;
 }
-.cssCompanySelectedRecord .cssCompanyName{
+.cssCompanySelectedRecord .cssCompanyName, .cssOneCompanyRecord:hover .cssCompanyName{
     color: #fff;
 }
 .cssCompanyCity
@@ -170,7 +170,7 @@ and (max-device-width : 736px){
     color: #505050;
     font-size: 0.9em;
 }
-.cssCompanySelectedRecord .cssCompanyCity{
+.cssCompanySelectedRecord .cssCompanyCity, .cssOneCompanyRecord:hover .cssCompanyCity{
     color: #fff;
 }
 .cssCustomerID

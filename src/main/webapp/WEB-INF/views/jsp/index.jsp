@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="./resources/core/js/bootstrap3-typeahead.min.js"></script>
     <script src="${masterDetailCtrl}" type="text/javascript"></script>
   </head>
   <body>
@@ -35,7 +36,8 @@
                             <form class="form-inline">
                               <div class="form-group">
                                 <label class="sr-only" for="search_brand">Drug Name</label>
-                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin">
+                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" data-provide="typeahead" autocomplete="off" data-source="[{id: 'someId1', name: 'Display name 1'}, 
+            {id: 'someId2', name: 'Display name 2'}]">
                               </div>
                               <button type="submit" class="btn btn-default">Search</button>
                             </form>
