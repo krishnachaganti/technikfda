@@ -1,6 +1,6 @@
 package gov.fda.service;
 
-import gov.fda.domain.ContrySeriousIncidents;
+import gov.fda.domain.CountrySeriousIncidents;
 import gov.fda.domain.CountryAndIncidents;
 import gov.fda.domain.CountryNameCode;
 import gov.fda.domain.CountryResult;
@@ -146,7 +146,7 @@ public class QueryServiceImpl implements QueryService{
 	
 	public List<Integer> getSeriousIncidentsCounts(String occurCountry)
 	{
-		ContrySeriousIncidents csi = new ContrySeriousIncidents();
+		CountrySeriousIncidents csi = new CountrySeriousIncidents();
 		csi.setDeathCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.DEATH));
 		csi.setCongCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.CONG_ANOMALIES));
 		csi.setDisabilityCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.DISABILITY));
