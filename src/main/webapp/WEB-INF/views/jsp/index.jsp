@@ -22,9 +22,9 @@
     <script src="./resources/core/js/drugTypeAhead.js"></script>
     <script src="${masterDetailCtrl}" type="text/javascript"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function (){
       initiateTypeAhead();
-    }
+    })
     </script>
   </head>
   <body>
