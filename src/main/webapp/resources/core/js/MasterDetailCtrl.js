@@ -1,4 +1,4 @@
-﻿var technikFDAApp = angular.module('technikFDAApp', []);
+﻿var technikFDAApp = angular.module('technikFDAApp', ['chart.js']);
 
 //  Force AngularJS to call our JSON Web Service with a 'GET' rather than an 'OPTION'
 //  Taken from: http://better-inter.net/enabling-cors-in-angular-js/
@@ -61,6 +61,7 @@ function ($scope, $http, $location) {
     //  We'll load our list of Countries from our JSON Web Service into this variable
     $scope.listOfCountrys = null;
     
+    
 
     //  When the user selects a "Country" from our MasterView list, we'll set the following variable.
     $scope.selectedCountry = null;
@@ -75,10 +76,10 @@ function ($scope, $http, $location) {
                 //  If we managed to load more than one Country record, then select the first record by default.
                 //  This line of code also prevents AngularJS from adding a "blank" <option> record in our drop down list
                 //  (to cater for the blank value it'd find in the "selectedCountry" variable)
-                $scope.selectedCountry = $scope.countries[0].term;
+                $scope.selectedCountry = $scope.countries[0];
 
                 //  Load the list of Orders, and their Products, that this Country has ever made.
-                $scope.loadIncidents();
+                //$scope.loadIncidents();
             }
         })
         .error(function (data, status, headers, config) {
@@ -88,7 +89,7 @@ function ($scope, $http, $location) {
     $scope.selectCountry = function (val) {
         //  If the user clicks on a <div>, we can get the ng-click to call this function, to set a new selected Country.
         $scope.selectedCountry = val.term;
-        $scope.loadIncidents();
+       // $scope.loadIncidents();
         $scope.changeDrugCharacterInfo();
     }
     
@@ -123,3 +124,12 @@ function ($scope, $http, $location) {
                 });        
     }
 });
+
+technikFDAApp.controller("DoughnutCtrl", 
+		function ($scope) {    
+			$scope.seriousIncidentLabels = ['Death', 'Congenital Anomalies', 'Disability', 'Hospitalization','Life Threatening','Unclisified'];
+			$scope.data = [300, 200, 100,10,70,40];
+});
+
+
+
