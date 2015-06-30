@@ -23,7 +23,6 @@
     <script src="/technikfda/resources/core/js/chart/Chart.js"></script>
     <!--  angular plugs to chart.js -->
     <script src="/technikfda/resources/core/js/chart/angular/angular-chart.js"></script>
-    <script src="/technikfda/resources/code/js/DisplayChart.js"></script>
     <script src="./resources/core/js/typeahead.js"></script>
     <script src="./resources/core/js/drugTypeAhead.js"></script>
     <script src="/technikfda/resources/core/js/MasterDetailCtrl.js" type="text/javascript"></script>
@@ -69,13 +68,13 @@
                                 </div>
                             </div>
                             <div id="divDetailView">
-                            <div class="cssOneOrderHeader">
-                                     <div class="cssOrderID">
-                                     Adeverse Events reported in that involved 
+                            
+                             <div class="panel panel-default">
+						      <div class="panel-heading">
+						        Adeverse Events reported in that involved 
                                      <span class="received">Aspirin</span> in
                                      <scpan class="received">{{selectedCountry.countryName}}</scpan>
-                                     </div>
-                             </div>
+						      </div>
                             <section  ng-controller="DoughnutCtrl">
 	                            <canvas id="doughnut" 
 	                            		class="chart chart-doughnut" 
@@ -85,7 +84,6 @@
 	  							</canvas>
 	  							</section>
                             </div>
-                               
                         </div>
                     </div>
                 </div>
