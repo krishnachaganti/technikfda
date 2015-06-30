@@ -65,7 +65,7 @@ function ($scope, $http, $location) {
     //  When the user selects a "Country" from our MasterView list, we'll set the following variable.
     $scope.selectedCountry = null;
 
-    $http.get('/technikfda/query/countries')
+    $http.get('/technikfda/query/countries/aspirin')
 
         .success(function (data) {
             $scope.countries = data;

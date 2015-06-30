@@ -1,12 +1,14 @@
 package gov.fda.service;
 
+import gov.fda.domain.ContrySeriousIncidents;
 import gov.fda.domain.CountryAndIncidents;
 import gov.fda.domain.CountryNameCode;
-import gov.fda.domain.CountryNameCodeList;
 import gov.fda.domain.CountryResult;
 import gov.fda.domain.NumIncidents;
 import gov.fda.domain.Result;
+import gov.fda.util.Constants;
 import gov.fda.util.CountryNameCodeRefresher;
+import gov.fda.util.SeriousEventType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,21 +24,6 @@ import org.springframework.web.client.RestTemplate;
 public class QueryServiceImpl implements QueryService{
 	
 	protected  RestTemplate restTemplate;
-	public static final String COUNTRY_FLAG_URL ="http://www.geonames.org/flags/x/";
-	public static final String FLAG_FILE_EXTENSION = ".gif";
-	protected static final String FDA_BASE_URL= "https://api.fda.gov/drug/event.json?";
-	protected static final String RECEIVED_DATE_PREDICATE= "receivedate:[20040101+TO+20150101]";
-	protected static final String AND_OPERATION = "+AND+";
-	protected static final String DESEASE_AND_NUM_INCIDENTS_QUERY = "patient.drug.drugindication:hypertension&count=patient.drug.drugindication";
-	
-	protected static final String COUNTRY_AND_NUM_INCIDENTS_QUERY = "count=occurcountry";
-	
-	protected static final String COUNTRY_LATEST_INCIDENTS_QUERY = "search=occurcountry:";
-	
-	protected static final String DRUG_AND_NUM_INCIDENTS_QUERY= "count=patient.drug.medicinalproduct";
-	
-	protected static final String LIMIT_PREDICATE = "&limit=";
-	protected static final String SKIP_PREDICATE = "&skip=";
 	
 	protected List<CountryNameCode> countries;
 	
@@ -82,7 +69,27 @@ public class QueryServiceImpl implements QueryService{
 	public List<CountryResult> getNumberOfIncidentsByCounty(){
 		this.restTemplate = new RestTemplate();
 		String queryString =
-				FDA_BASE_URL+COUNTRY_AND_NUM_INCIDENTS_QUERY;
+				Constants.FDA_BASE_URL+Constants.COUNTRY_AND_NUM_INCIDENTS_QUERY;
+		logger.debug(queryString);
+		CountryAndIncidents wrapper = restTemplate.getForObject(queryString, CountryAndIncidents.class);
+		List<CountryResult> countiresFDA =wrapper.getResults();
+		CountryAndIncidents.sortList(wrapper.getResults());
+		loadCountriesStaticData();
+		for(CountryResult country : countiresFDA){
+			country.setCountryName(
+					CountryAndIncidents.getCountryName(country.getTerm(), countries));
+			country.setImageSrc(getFlagSource(country.getTerm()));
+		}
+		return countiresFDA;		
+	}
+	
+	
+	public List<CountryResult> getNumberOfIncidentsByCountyAndDrugName(String drugName){
+		this.restTemplate = new RestTemplate();
+		String queryString =
+				Constants.FDA_BASE_URL+
+				Constants.DRUG_SEARCH+drugName +
+				Constants.COUNTRY_AND_NUM_INCIDENTS_QUERY;
 		logger.debug(queryString);
 		CountryAndIncidents wrapper = restTemplate.getForObject(queryString, CountryAndIncidents.class);
 		List<CountryResult> countiresFDA =wrapper.getResults();
@@ -98,14 +105,14 @@ public class QueryServiceImpl implements QueryService{
 	
 	private String getFlagSource(String countryShortName)
 	{
-		return COUNTRY_FLAG_URL+countryShortName+FLAG_FILE_EXTENSION;
+		return Constants.COUNTRY_FLAG_URL+countryShortName+Constants.FLAG_FILE_EXTENSION;
 	}
 	
 	
 	public List<Result> getNumberOfIncidentsByDrug(){
 		this.restTemplate = new RestTemplate();
 		String queryString =
-				FDA_BASE_URL+DRUG_AND_NUM_INCIDENTS_QUERY;
+				Constants.FDA_BASE_URL+Constants.DRUG_AND_NUM_INCIDENTS_QUERY;
 		logger.debug(queryString);
 		NumIncidents wrapper = restTemplate.getForObject(queryString, NumIncidents.class);
 		return sortResults(wrapper.getResults());
@@ -115,13 +122,54 @@ public class QueryServiceImpl implements QueryService{
 	public String getIncidentsByCountry(String occurCountry, int skipIncidents, int limitIncidents)
 	{
 		String queryString =
-				FDA_BASE_URL+COUNTRY_LATEST_INCIDENTS_QUERY+occurCountry+LIMIT_PREDICATE+limitIncidents
-					+SKIP_PREDICATE+skipIncidents;
+				Constants.FDA_BASE_URL+Constants.COUNTRY_LATEST_INCIDENTS_QUERY+occurCountry+Constants.LIMIT_PREDICATE+limitIncidents
+					+Constants.SKIP_PREDICATE+skipIncidents;
 		
 		String wrapper = restTemplate.getForObject(queryString, String.class);
 		
 		return wrapper;
 		
+	}
+	
+	private int getSeriousEventsByCountry(String occurCountry, SeriousEventType event)
+	{
+		int returnCount = 0;	
+		String queryString =
+				Constants.FDA_BASE_URL+Constants.COUNTRY_LATEST_INCIDENTS_QUERY+occurCountry+
+				event.predicate();
+
+		logger.debug(queryString);
+		NumIncidents wrapper = restTemplate.getForObject(queryString, NumIncidents.class);
+		
+		return wrapper.getResults().get(0).getCount();
+	}
+	
+	public List<Integer> getSeriousIncidentsCounts(String occurCountry)
+	{
+		ContrySeriousIncidents csi = new ContrySeriousIncidents();
+		csi.setDeathCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.DEATH));
+		csi.setCongCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.CONG_ANOMALIES));
+		csi.setDisabilityCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.DISABILITY));
+		csi.setHospitalizationCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.HOSPITALIZATION));
+		csi.setLifeThreateningCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.LIFE_THREATENING));
+		csi.setUnclassifiedCount( getSeriousEventsByCountry(occurCountry, SeriousEventType.UNCLASSIFIED));
+		List<Integer> returnValue = new ArrayList<Integer>();
+		returnValue.add(csi.getDeathCount());
+		returnValue.add(csi.getCongCount());
+		returnValue.add(csi.getDisabilityCount());
+		returnValue.add(csi.getHospitalizationCount());
+		returnValue.add(csi.getLifeThreateningCount());
+		returnValue.add(csi.getUnclassifiedCount());
+		
+		return returnValue;
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		QueryServiceImpl qsi = new QueryServiceImpl();
+		qsi.getNumberOfIncidentsByCountyAndDrugName("aspirin");
+		qsi.getNumberOfIncidentsByCounty();
 	}
 
 }

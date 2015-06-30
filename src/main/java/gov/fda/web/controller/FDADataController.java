@@ -32,6 +32,12 @@ public class FDADataController {
 		return queryService.getNumberOfIncidentsByCounty();
 	}
 	
+	@RequestMapping(value = "/countries/{drugName}", method = RequestMethod.GET)
+	public List<CountryResult> getCountriesAndIncidents(@PathVariable String drugName) {
+		logger.debug("getCountriesAndIncidents() is executed! drugName :"+drugName);
+		return queryService.getNumberOfIncidentsByCountyAndDrugName(drugName);
+	}
+	
 	@RequestMapping(value = "/countryCode/{code}/limit/{sizeLimit}/skip/{skipSize}", method = RequestMethod.GET)
 	public String getCountryIncident(@PathVariable String code,
 			@PathVariable int sizeLimit, @PathVariable int skipSize) {
