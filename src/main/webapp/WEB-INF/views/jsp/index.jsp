@@ -18,7 +18,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-    <script src="./resources/core/js/bootstrap3-typeahead.min.js"></script>
+    <script src="./resources/core/js/typeahead.js"></script>
     <script src="./resources/core/js/drugTypeAhead.js"></script>
     <script src="${masterDetailCtrl}" type="text/javascript"></script>
     <script type="text/javascript">

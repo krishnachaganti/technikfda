@@ -31,15 +31,14 @@ var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
  
-
 function initiateTypeAhead(){
-  $('#search_drug').typeahead({
-    hint: true,
-    highlight: true,
-    minLength: 1
-  },
-  {
-    name: 'states',
-    source: substringMatcher(states)
-  });
+    $('#search_drug').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      name: 'states',
+      source: substringMatcher(states)
+    });
 }
