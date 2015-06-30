@@ -80,6 +80,7 @@
 	                            <canvas id="doughnut" 
 	                            		class="chart chart-doughnut" 
 	                            		data="data"
+	                            		legend="true"
 	  									labels="seriousIncidentLabels">
 	  							</canvas>
 	  							</section>
