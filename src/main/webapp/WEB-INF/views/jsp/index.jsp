@@ -19,7 +19,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <script src="./resources/core/js/bootstrap3-typeahead.min.js"></script>
+    <script src="./resources/core/js/drugTypeAhead.js"></script>
     <script src="${masterDetailCtrl}" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      initiateTypeAhead();
+    }
+    </script>
   </head>
   <body>
         <div class="header-container">
@@ -36,7 +42,7 @@
                             <form class="form-inline">
                               <div class="form-group">
                                 <label class="sr-only" for="search_brand">Drug Name</label>
-                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" data-provide="typeahead" autocomplete="off" data-source="['Advil','Aspirin','Tylenol']">
+                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" autocomplete="off">
                               </div>
                               <button type="submit" class="btn btn-default">Search</button>
                             </form>
