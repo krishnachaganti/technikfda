@@ -65,6 +65,10 @@ nav a{
     margin: 10px;
 }
 
+.form-line .form-control{
+    width: 210px;
+}
+
 #divMasterDetailWrapper
 {
     height: 80%;
@@ -94,6 +98,10 @@ nav a{
 and (max-device-width : 736px){
     #divMasterDetailWrapper{
         height: auto;
+    }
+
+    .main{
+        padding: 8px 0;
     }
 
     #divMasterView{

@@ -36,8 +36,7 @@
                             <form class="form-inline">
                               <div class="form-group">
                                 <label class="sr-only" for="search_brand">Drug Name</label>
-                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" data-provide="typeahead" autocomplete="off" data-source="[{id: 'someId1', name: 'Display name 1'}, 
-            {id: 'someId2', name: 'Display name 2'}]">
+                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" data-provide="typeahead" autocomplete="off" data-source="['Advil','Aspirin','Tylenol']">
                               </div>
                               <button type="submit" class="btn btn-default">Search</button>
                             </form>
