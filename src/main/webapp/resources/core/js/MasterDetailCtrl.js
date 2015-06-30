@@ -55,12 +55,13 @@ technikFDAApp.filter('orderTotal', function () {
 });
 
 technikFDAApp.controller('MasterDetailCtrl',
-function ($scope, $http, $location) {
+function ($scope, $rootScope, $http, $location) {
 
 	$scope.currentServer = $location.protocol()+"://"+$location.host()+":"+$location.port();
     //  We'll load our list of Countries from our JSON Web Service into this variable
     $scope.listOfCountrys = null;
     
+    $rootScope.selectedCountry = null;
     
 
     //  When the user selects a "Country" from our MasterView list, we'll set the following variable.
@@ -77,6 +78,7 @@ function ($scope, $http, $location) {
                 //  This line of code also prevents AngularJS from adding a "blank" <option> record in our drop down list
                 //  (to cater for the blank value it'd find in the "selectedCountry" variable)
                 $scope.selectedCountry = $scope.countries[0];
+                $rootScope.selectedCountry = $scope.countries[0];
 
                 //  Load the list of Orders, and their Products, that this Country has ever made.
                 //$scope.loadIncidents();
@@ -126,9 +128,12 @@ function ($scope, $http, $location) {
 });
 
 technikFDAApp.controller("DoughnutCtrl", 
-		function ($scope) {    
+		function ($scope, $rootScope) {    
 			$scope.seriousIncidentLabels = ['Death', 'Congenital Anomalies', 'Disability', 'Hospitalization','Life Threatening','Unclisified'];
 			$scope.data = [300, 200, 100,10,70,40];
+			//console.debug($rootScope.selectedCountry.term);
+			
+			
 });
 
 
