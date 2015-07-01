@@ -54,7 +54,7 @@
                                 	value="Aspirin" 
                                 	autocomplete="off">
                               </div>
-                              <button type="submit" class="btn btn-default">Search</button>
+                              <!--button type="submit" class="btn btn-default">Search</button-->
                             </form>
                         </div>
                         <div 	id="divMasterDetailWrapper" 
@@ -73,22 +73,18 @@
                                 </div>
                             </div>
                             <div id="divDetailView">
-                             <div class="panel panel-default">
-						      <div class="panel-heading">
-						        Adeverse Events reported in that involved 
-                                     <span class="received">Aspirin</span> in
-                                     <scpan class="received">{{selectedCountry.countryName}}</scpan>
-						      </div>
-						      <div id="doughnutContainer">
-                            <section  ng-controller="DoughnutCtrl">
-	                            <canvas id="doughnut" 
-	                            		class="chart chart-doughnut" 
-	                            		data="datay"
-	                            		legend="true"
-	  									labels="seriousIncidentLabels">
-	  							</canvas>
-	  						  </section>
-	  						  </div>
+                              <h3>Adverse events involving aspirin in {{selectedCountry.countryName}}</h3>
+                              <section  ng-controller="DoughnutCtrl">
+  	                            <canvas id="doughnut" 
+  	                            		class="chart chart-doughnut" 
+  	                            		data="data"
+  	                            		legend="true"
+  	  						 			            labels="seriousIncidentLabels">
+  	  							             </canvas>
+            	  							</section>
+                              <div class="disclaimer">
+                                Disclaimer: Users are cautioned to not draw conclusions about products based solely on adverse event information. There is no certainty that the reported event was actually caused by the product. The report merely indicates that the patient was taking the medication at the time of the adverse event. Reports do not contain enough detail to fully evaluate an event.
+                              </div>
                             </div>
                         </div>
                     </div>

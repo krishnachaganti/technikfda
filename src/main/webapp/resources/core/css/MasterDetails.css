@@ -90,6 +90,19 @@ nav a{
     height: 100%;
     padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#divDetailView h3{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 12px 8px 16px;
+}
+
+.disclaimer{
+    margin: 12px 8px;
+    font-size: 11px;
+    color: #777;
 }
 
 /* Responsive media queries */
