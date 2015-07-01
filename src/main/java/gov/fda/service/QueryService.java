@@ -15,4 +15,6 @@ public interface QueryService
 	public String getIncidentsByCountry(String occurCountry, int skipIncidents, int queryIncidents);   
 	
 	public List<CountryResult> getNumberOfIncidentsByCountyAndDrugName(String drugName);
+	
+	public List<Integer> getSeriousIncidentsCounts(String occurCountry, String drugName);
 }

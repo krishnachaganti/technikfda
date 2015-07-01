@@ -47,7 +47,12 @@
                             <form class="form-inline">
                               <div class="form-group">
                                 <label class="sr-only" for="search_brand">Drug Name</label>
-                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" autocomplete="off">
+                                <input ng-model="searchDrugField" type="text" 
+                                	class="form-control" 
+                                	id="search_drug" 
+                                	placeholder="Drug name (e.g. aspirin)" 
+                                	value="Aspirin" 
+                                	autocomplete="off">
                               </div>
                               <button type="submit" class="btn btn-default">Search</button>
                             </form>
@@ -68,21 +73,22 @@
                                 </div>
                             </div>
                             <div id="divDetailView">
-                            
                              <div class="panel panel-default">
 						      <div class="panel-heading">
 						        Adeverse Events reported in that involved 
                                      <span class="received">Aspirin</span> in
                                      <scpan class="received">{{selectedCountry.countryName}}</scpan>
 						      </div>
+						      <div id="doughnutContainer">
                             <section  ng-controller="DoughnutCtrl">
 	                            <canvas id="doughnut" 
 	                            		class="chart chart-doughnut" 
-	                            		data="data"
+	                            		data="datay"
 	                            		legend="true"
 	  									labels="seriousIncidentLabels">
 	  							</canvas>
-	  							</section>
+	  						  </section>
+	  						  </div>
                             </div>
                         </div>
                     </div>
