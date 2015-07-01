@@ -28,7 +28,6 @@
     <script src="/technikfda/resources/core/js/MasterDetailCtrl.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function (){
-      initiateTypeAhead();
     })
     </script>
   </head>
