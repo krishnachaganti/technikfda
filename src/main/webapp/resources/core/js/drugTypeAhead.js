@@ -28,9 +28,11 @@ var drugs = new Bloodhound({
 
  
 function initiateTypeAhead(){
-  $('#search_drug').typeahead(null, {
+  $('#search_drug').typeahead({
+      hint: false,
+      minLength: 2 }, {
       displayKey: 'value',
-      source: drugs.ttAdapter()
+      source: drugs.ttAdapter(),
   });
 // Initialize the Bloodhound suggestion engine
 drugs.initialize();

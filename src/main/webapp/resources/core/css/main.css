@@ -107,7 +107,7 @@ body {
   cursor: pointer;
 }
 
-.tt-selectable:hover, .tt-selectable:focus{
+.tt-selectable:hover, .tt-selectable:focus, .tt-cursor{
   background-color: #335087;
   color: #fff;
 }
