@@ -148,10 +148,6 @@ and (max-device-width : 736px){
     .form-control{
         width: auto;
     }
-
-    .chart-container{
-        height: 320px;
-    }
 }
 
 /*
