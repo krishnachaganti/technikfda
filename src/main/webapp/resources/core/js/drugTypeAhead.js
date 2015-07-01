@@ -46,5 +46,4 @@ function initiateTypeAhead(){
               name: "drugs",
               source: substringMatcher(drugList)
           });
-  }
 }
