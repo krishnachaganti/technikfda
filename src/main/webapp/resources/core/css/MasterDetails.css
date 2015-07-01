@@ -92,6 +92,18 @@ nav a{
     overflow-y: auto;
 }
 
+#divDetailView h3{
+    font-size: 15px;
+    font-weight: bold;
+    margin: 8px;
+}
+
+.disclaimer{
+    margin: 8px;
+    font-size: 11px;
+    color: #777;
+}
+
 /* Responsive media queries */
 
 @media only screen 
