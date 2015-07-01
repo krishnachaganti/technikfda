@@ -43,6 +43,7 @@ function initiateTypeAhead(){
               source: substringMatcher(drugList)
           })
           .on('typeahead:autocompleted', onSelected);
+          .on('typeahead:selected', onSelected);
 }
 
 function onSelected($e, datum) {
