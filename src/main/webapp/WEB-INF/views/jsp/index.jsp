@@ -47,7 +47,12 @@
                             <form class="form-inline">
                               <div class="form-group">
                                 <label class="sr-only" for="search_brand">Drug Name</label>
-                                <input type="text" class="form-control" id="search_drug" placeholder="Drug name (e.g. aspirin)" value="Aspirin" autocomplete="off">
+                                <input ng-model="searchDrugField" type="text" 
+                                	class="form-control" 
+                                	id="search_drug" 
+                                	placeholder="Drug name (e.g. aspirin)" 
+                                	value="Aspirin" 
+                                	autocomplete="off">
                               </div>
                               <!--button type="submit" class="btn btn-default">Search</button-->
                             </form>
@@ -74,7 +79,7 @@
   	                            		class="chart chart-doughnut" 
   	                            		data="data"
   	                            		legend="true"
-  	  						 			            labels="seriousIncidentLabels">
+  	  						 			labels="seriousIncidentLabels">
   	  							             </canvas>
             	  							</section>
                               <div class="disclaimer">

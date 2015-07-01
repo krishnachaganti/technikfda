@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,6 +46,15 @@ public class FDADataController {
 		logger.debug("getCountryIncident() is executed! limitSize :"+sizeLimit);
 		logger.debug("getCountryIncident() is executed! skipSize :"+skipSize);
 		return queryService.getIncidentsByCountry(code, sizeLimit, skipSize);
+	}
+	
+	@RequestMapping(value = "/seriousIncidents/{countryCode}/{drugName}", method = RequestMethod.GET)
+	@ResponseBody()
+	public List<Integer> getCountrySeriousIncidentCounts(@PathVariable String countryCode,
+			@PathVariable String drugName) {
+		logger.debug("getCountrySeriousIncidentCounts() is executed! countryCode :"+countryCode);
+		logger.debug("getCountrySeriousIncidentCounts() is executed! drugName :"+drugName);
+		return queryService.getSeriousIncidentsCounts(countryCode, drugName);
 	}
 
 }

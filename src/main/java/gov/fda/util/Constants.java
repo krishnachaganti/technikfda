@@ -23,7 +23,7 @@ public class Constants {
 	public static final String SKIP_PREDICATE = "&skip=";
 	public static final String SEARCH_PREDICATE = "&search=";
 	
-	public static final String DRUG_SEARCH = "search=patient.drug.medicinalproduct:";
+	public static final String DRUG_SEARCH = "patient.drug.medicinalproduct:";
 	
 
 }
