@@ -79,7 +79,7 @@
   	                            		class="chart chart-doughnut" 
   	                            		data="data"
   	                            		legend="true"
-  	  						 			            labels="seriousIncidentLabels">
+  	  						 			labels="seriousIncidentLabels">
   	  							             </canvas>
             	  							</section>
                               <div class="disclaimer">

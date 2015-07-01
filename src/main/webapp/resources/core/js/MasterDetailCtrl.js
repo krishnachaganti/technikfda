@@ -150,13 +150,13 @@ function ($scope, $rootScope, $http, $location) {
 technikFDAApp.controller("DoughnutCtrl", 
 		function ($scope, $rootScope, $timeout, $http) {    
 			$scope.seriousIncidentLabels = ['Death', 'Congenital Anomalies', 'Disability', 'Hospitalization','Life Threatening','Unclisified'];
-			$scope.datay = null;
+			$scope.data = null;
 				
 	$rootScope.loadGraphDataForSelectedCountry= function(countryCode){
 		var currentQuery = '/technikfda/query/seriousIncidents/'+countryCode+'/aspirin';
 		 $http.get(currentQuery)
         .success(function (data, status, headers, config) {
-            $scope.datay = data;
+            $scope.data = data;
         })
         .error(function (data, status, headers, config) {
             $scope.errorMessage = "Couldn't load the list of Incidents, error # " + status;
