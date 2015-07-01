@@ -36,10 +36,16 @@ $.getJSON(searchURL, {})
 
 function initiateTypeAhead(){
   var ta = $('#search_drug').typeahead({
-              hint: true,
+              hint: false,
               minLength: 1},
               {
               name: "drugs",
               source: substringMatcher(drugList)
-          });
+          })
+          .on('typeahead:autocompleted', onSelected);
+}
+
+function onSelected($e, datum) {
+    console.log('selected');
+    console.log(datum);
 }
