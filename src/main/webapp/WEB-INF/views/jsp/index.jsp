@@ -46,7 +46,7 @@
                         <div class="search_bar">
                             <form class="form-inline">
                               <div class="form-group">
-                                <label class="sr-only" for="search_brand">Drug Name</label>
+                                <label class="sr-only" for="search_drug">Drug Name</label>
                                 <input ng-model="searchDrugField" type="text" 
                                 	class="form-control" 
                                 	id="search_drug" 
