@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div id="divDetailView">
-                              <h3>Adverse events involving aspirin in {{selectedCountry.countryName}}</h3>
+                              <h3>Adverse events involving {{searchDrugField}} in {{selectedCountry.countryName}}</h3>
                               <section  ng-controller="DoughnutCtrl">
   	                            <canvas id="doughnut" 
   	                            		class="chart chart-doughnut" 
