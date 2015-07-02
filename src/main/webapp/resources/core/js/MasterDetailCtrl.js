@@ -97,6 +97,36 @@ function ($scope, $rootScope, $http, $location) {
         $scope.searchDrugField = $('#search_drug').val();
         $rootScope.loadGraphDataForSelectedCountry($scope.selectedCountry.term, $scope.searchDrugField);
     }
+    
+    $scope.loadCoutryData = function(){
+    	//alert('called to load country data');
+    	$scope.searchDrugField = $('#search_drug').val();
+    	if($scope.searchDrugField == ''){
+    		$scope.searchDrugField = 'Aspirin';
+    	}
+	    $http.get('/technikfda/query/countries/'+$scope.searchDrugField)
+	
+	    .success(function (data) {
+	        $scope.countries = data;
+	
+	        if ($scope.countries.length > 0) {
+	
+	            //  If we managed to load more than one Country record, then select the first record by default.
+	            //  This line of code also prevents AngularJS from adding a "blank" <option> record in our drop down list
+	            //  (to cater for the blank value it'd find in the "selectedCountry" variable)
+	            $scope.selectedCountry = $scope.countries[0];
+	            $rootScope.selectedCountry = $scope.countries[0];
+	
+	            //  Load the list of Orders, and their Products, that this Country has ever made.
+	            //$scope.loadIncidents();
+	             $rootScope.loadGraphDataForSelectedCountry($scope.selectedCountry.term, $scope.searchDrugField);
+	        }
+	    })
+	    .error(function (data, status, headers, config) {
+	        $scope.errorMessage = "Couldn't load the list of Countrys, error # " + status;
+	    });
+    
+   }
 
     
     $scope.getDrugCharacter = function(value){

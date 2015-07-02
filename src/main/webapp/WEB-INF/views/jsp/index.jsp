@@ -37,7 +37,8 @@
                 <img src="./resources/core/images/openFDA.png" class="header_logo" alt="openFDA Logo" />
             </header>
         </div>
-        <div class="main-container">
+        <div class="main-container" 
+              ng-controller="MasterDetailCtrl" >
             <div class="main wrapper clearfix">
                 <div class="panel panel-default">
                     <div class="panel-heading">Adverse Drug Event Reports by Country</div>
@@ -53,11 +54,15 @@
                                 	value="Aspirin" 
                                 	autocomplete="off">
                               </div>
-                              <!--button type="submit" class="btn btn-default">Search</button-->
+                              <button 
+                                	 ng-click="loadCoutryData();"
+                                	  class="btn btn-default">Search</button>
+                              <div class="form-group">
+                                 Input medicinal product to view related adverse event summaries.
+                               </div>
                             </form>
                         </div>
                         <div 	id="divMasterDetailWrapper" 
-                        		ng-controller="MasterDetailCtrl" 
                         		style="position:relative;">
                             <div id="divMasterView" >
                                <div id="{{country.term}}" 
