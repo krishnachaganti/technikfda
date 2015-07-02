@@ -62,7 +62,7 @@
                             <div id="divMasterView" >
                                <div id="{{country.term}}" 
                                			class="cssOneCompanyRecord" 
-                               			ng-class="{cssCompanySelectedRecord: country.term == selectedCountry}" 
+                               			ng-class="{cssCompanySelectedRecord: country == selectedCountry}" 
                                			ng-repeat="country in countries" 
                                			ng-click="selectCountry(country);">
                                     <div class="cssCompanyName">{{country.countryName}}</div>
