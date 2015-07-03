@@ -31,14 +31,14 @@
     })
     </script>
   </head>
-  <body>
+  <body ng-controller="MasterDetailCtrl">
         <div class="header-container">
             <header class="wrapper clearfix">
                 <img src="./resources/core/images/openFDA.png" class="header_logo" alt="openFDA Logo" />
             </header>
         </div>
         <div class="main-container" 
-              ng-controller="MasterDetailCtrl" >
+               >
             <div class="main wrapper clearfix">
                 <div class="panel panel-default">
                     <div class="panel-heading">Adverse Drug Event Reports by Country</div>
